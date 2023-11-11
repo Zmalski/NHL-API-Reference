@@ -104,12 +104,12 @@ Please note that there appears to be *two* primary sources for official NHL APIs
 6. [Miscellaneous](#miscellaneous-1)
    1. [Configuration](#configuration)
       1. [Get Configuration](#get-configuration)
-      2. [Ping the Server](#ping-the-server)
-      3. [Get Country Information](#get-country-information)
-      4. [Get Shift Charts](#get-shift-charts)
-   2. [Glossary](#glossary)
+   2. [Ping the Server](#ping-the-server)
+   3. [Get Country Information](#get-country-information)
+   4. [Get Shift Charts](#get-shift-charts)
+   5. [Glossary](#glossary)
       1. [Get Glossary](#get-glossary)
-   3. [Content Module](#content-module)
+   6. [Content Module](#content-module)
       1. [Get Content Module](#get-content-module)
       2. [Get Metadata for Content Module](#get-metadata-for-content-module)
 
@@ -1121,7 +1121,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/game/meta"
 curl -X GET "https://api.nhle.com/stats/rest/en/config"
 ```
 
-#### Ping the Server
+### Ping the Server
 - **Endpoint**: `/ping`
 - **Method**: GET
 - **Description**: Ping the server to check connectivity.
@@ -1133,7 +1133,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/config"
 curl -X GET "https://api.nhle.com/stats/rest/ping"
 ```
 
-#### Get Country Information
+### Get Country Information
 - **Endpoint**: `/{lang}/country`
 - **Method**: GET
 - **Description**: Retrieve country information. Returns list of all countries with a hockey presence(?)
@@ -1147,7 +1147,7 @@ curl -X GET "https://api.nhle.com/stats/rest/ping"
 curl -X GET "https://api.nhle.com/stats/rest/en/country"
 ```
 
-#### Get Shift Charts
+### Get Shift Charts
 - **Endpoint**: `/{lang}/shiftcharts`
 - **Method**: GET
 - **Description**: Retrieve shift charts for a specific language. **Returns an error for missing gameId, but WADL doesn't specify requiring a gameId**
