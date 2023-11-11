@@ -90,7 +90,7 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       2. [Get Goalie Stats](#get-goalie-stats)
       3. [Get Goalie Milestones](#get-goalie-milestones)
    4. [Draft](#draft)
-      5. [Get Draft Information](#get-draft-information)
+      1. [Get Draft Information](#get-draft-information)
 3. [Teams](#teams)
    1. [Get Team Information](#get-team-information)
    2. [Get Team Stats](#get-team-stats)
