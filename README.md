@@ -3,7 +3,7 @@
 This document aims to serve as an unofficial reference for the NHL APIs. Corrections and/or suggestions are welcome.
 
 ## Table of Contents
-### api-web.nhle.com
+### [api-web.nhle.com](#nhl-web-api-documentation)
 1. [Base URL](#base-url)
 2. [Player Information](#player-information)
    1. [Players](#players)
@@ -73,7 +73,8 @@ This document aims to serve as an unofficial reference for the NHL APIs. Correct
       1. [Get OpenAPI Specification](#get-openapi-specification)
    3. [Unknown](#unknown)
       1. [Get Location](#get-location)
-### api.nhle.com/stats/rest
+---
+### [api.nhle.com/stats/rest](#nhl-stats-api-documentation)
 1. [Base URL](#base-url-1)
 2. [Players](#players)
    1. [Get Player Information](#get-player-information)
@@ -113,6 +114,10 @@ This document aims to serve as an unofficial reference for the NHL APIs. Correct
 
 ---
 
+
+# NHL Web API Documentation
+
+This section provides documentation for the NHL Web API (https://api-web.nhle.com/).
 
 
 ## Base URL
@@ -795,13 +800,13 @@ curl -X GET "https://api-web.nhle.com/v1/location"
 
 
 ---
+
 *For the full WADL with extended resources: [WADL Link](https://api-web.nhle.com/application.wadl?detail=true)*
+
+
+
+
 ---
-
-
-
-
-
 # NHL Stats API Documentation
 
 This section provides documentation for the NHL Stats API (https://api.nhle.com/stats/rest).
