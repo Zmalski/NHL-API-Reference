@@ -1,8 +1,9 @@
 # NHL API Documentation
 
-This document aims to serve as an unofficial reference for the NHL API. Corrections and/or suggestions are welcome.
+This document aims to serve as an unofficial reference for the NHL APIs. Corrections and/or suggestions are welcome.
 
 ## Table of Contents
+### api-web.nhle.com
 1. [Base URL](#base-url)
 2. [Player Information](#player-information)
    1. [Players](#players)
@@ -72,12 +73,51 @@ This document aims to serve as an unofficial reference for the NHL API. Correcti
       1. [Get OpenAPI Specification](#get-openapi-specification)
    3. [Unknown](#unknown)
       1. [Get Location](#get-location)
+### api.nhle.com/stats/rest
+1. [Base URL](#base-url-1)
+2. [Players](#players)
+   1. [Get Player Information](#get-player-information)
+   2. [Skaters](#skaters)
+      1. [Get Skater Leaders](#get-skater-leaders)
+      2. [Get Skater Milestones](#get-skater-milestones)
+      3. [Get Skater Information](#get-skater-information)
+      4. [Get Skater Stats](#get-skater-stats)
+   3. [Goalies](#goalies)
+      1. [Get Goalie Leaders](#get-goalie-leaders)
+      2. [Get Goalie Stats](#get-goalie-stats)
+      3. [Get Goalie Milestones](#get-goalie-milestones)
+   4. [Draft](#draft)
+      5. [Get Draft Information](#get-draft-information)
+3. [Teams](#teams)
+   1. [Get Team Information](#get-team-information)
+   2. [Get Team Stats](#get-team-stats)
+   3. [Get Franchise Information](#get-franchise-information)
+4. [Season](#season)
+   1. [Get Component Season](#get-component-season)
+   2. [Get Season](#get-season)
+5. [Game](#game)
+   1. [Get Game Information](#get-game-information)
+   2. [Get Game Metadata](#get-game-metadata)
+6. [Miscellaneous](#miscellaneous)
+   1. [Configuration](#configuration)
+      1. [Get Configuration](#get-configuration)
+      2. [Ping the Server](#ping-the-server)
+      3. [Get Country Information](#get-country-information)
+      4. [Get Shift Charts](#get-shift-charts)
+   2. [Glossary](#glossary)
+      1. [Get Glossary](#get-glossary)
+   3. [Content Module](#content-module)
+      1. [Get Content Module](#get-content-module)
+      2. [Get Metadata for Content Module](#get-metadata-for-content-module)
+
 
 ---
 
+
+
 ## Base URL
 
-All endpoints described in this document are relative to the following base URL:
+All endpoints described in this section are relative to the following base URL:
 
 ```
 https://api-web.nhle.com/
@@ -756,3 +796,410 @@ curl -X GET "https://api-web.nhle.com/v1/location"
 
 ---
 *For the full WADL with extended resources: [WADL Link](https://api-web.nhle.com/application.wadl?detail=true)*
+---
+
+
+
+
+
+# NHL Stats API Documentation
+
+This section provides documentation for the NHL Stats API (https://api.nhle.com/stats/rest).
+**Note:** Many of the endpoints in this section seem either inconsistend/WIP/deprecated/bug-ridden.
+
+
+## Base URL
+
+All endpoints described in this section are relative to the following base URL:
+
+```
+https://api.nhle.com/stats/rest
+```
+
+## Players
+
+#### Get Player Information
+- **Endpoint**: `/{lang}/players`
+- **Method**: GET
+- **Description**: Retrieve player information. Currently seems to return a truncated list with a total.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/players"
+```
+
+### Skaters
+
+#### Get Skater Leaders
+- **Endpoint**: `/{lang}/leaders/skaters/{attribute}`
+- **Method**: GET
+- **Description**: Retrieve skater leaders for a specific attribute.
+- **Parameters**:
+  - `attribute` (string) - Skater attribute
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/leaders/skaters/points"
+```
+
+#### Get Skater Milestones
+- **Endpoint**: `/{lang}/milestones/skaters`
+- **Method**: GET
+- **Description**: Retrieve skater milestones.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/milestones/skaters"
+```
+
+#### Get Skater Information
+- **Endpoint**: `/{lang}/skater`
+- **Method**: GET
+- **Description**: Retrieve skater information.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/skater"
+```
+
+#### Get Skater Stats
+- **Endpoint**: `/{lang}/skater/{report}`
+- **Method**: GET
+- **Description**: Retrieve skater stats for a specific report. **Unknown what "reports" are accepted. Returns 500 at time of writing**
+- **Parameters**:
+  - `report` (string) - Skater report
+  - `lang` (string) - Language code
+- **Request Parameters**:
+  - `isAggregate` (query, boolean) - Optional
+  - `isGame` (query, boolean) - Optional
+  - `factCayenneExp` (query, string) - Optional
+  - `include` (query, string) - Optional
+  - `exclude` (query, string) - Optional
+  - `cayenneExp` (query, string) - Optional
+  - `sort` (query, string) - Optional
+  - `dir` (query, string) - Optional
+  - `start` (query, int) - Optional
+  - `limit` (query, int) - Optional
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/skater/summary"
+```
+
+
+
+### Goalies
+
+#### Get Goalie Leaders
+- **Endpoint**: `/{lang}/leaders/goalies/{attribute}`
+- **Method**: GET
+- **Description**: Retrieve goalie leaders for a specific attribute.
+- **Parameters**:
+  - `attribute` (string) - Goalie attribute
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/leaders/goalies/gaa"
+```
+
+#### Get Goalie Stats
+- **Endpoint**: `/{lang}/goalie/{report}`
+- **Method**: GET
+- **Description**: Retrieve goalie stats for a specific report. **Unknown what "reports" are accepted. Returns 500 at time of writing**
+- **Parameters**:
+  - `report` (string) - Goalie report
+  - `lang` (string) - Language code
+- **Request Parameters**:
+  - `isAggregate` (query, boolean) - Optional
+  - `isGame` (query, boolean) - Optional
+  - `factCayenneExp` (query, string) - Optional
+  - `include` (query, string) - Optional
+  - `exclude` (query, string) - Optional
+  - `cayenneExp` (query, string) - Optional
+  - `sort` (query, string) - Optional
+  - `dir` (query, string) - Optional
+  - `start` (query, int) - Optional
+  - `limit` (query, int) - Optional
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/goalie/summary"
+```
+
+#### Get Goalie Milestones
+- **Endpoint**: `/{lang}/milestones/goalies`
+- **Method**: GET
+- **Description**: Retrieve goalie milestones.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/milestones/goalies"
+```
+
+### Draft
+
+#### Get Draft Information
+- **Endpoint**: `/{lang}/draft`
+- **Method**: GET
+- **Description**: Retrieve draft information.
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/draft"
+```
+
+
+
+## Teams
+
+#### Get Team Information
+- **Endpoint**: `/{lang}/team`
+- **Method**: GET
+- **Description**: Retrieve list of all teams.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/team"
+```
+
+#### Get Team Stats
+- **Endpoint**: `/{lang}/team/{report}`
+- **Method**: GET
+- **Description**: Retrieve team stats for a specific report.
+- **Parameters**:
+  - `report` (string) - Team report
+  - `lang` (string) - Language code
+- **Request Parameters**:
+  - `isAggregate` (query, boolean) - Optional
+  - `isGame` (query, boolean) - Optional
+  - `factCayenneExp` (query, string) - Optional
+  - `include` (query, string) - Optional
+  - `exclude` (query, string) - Optional
+  -
+
+ `cayenneExp` (query, string) - Optional
+  - `sort` (query, string) - Optional
+  - `dir` (query, string) - Optional
+  - `start` (query, int) - Optional
+  - `limit` (query, int) - Optional
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/team/summary"
+```
+
+### Get Franchise Information
+- **Endpoint**: `/{lang}/franchise`
+- **Method**: GET
+- **Description**: Retrieve list of all franchises.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/franchise"
+```
+
+
+
+## Season
+
+#### Get Component Season
+- **Endpoint**: `/{lang}/componentSeason`
+- **Method**: GET
+- **Description**: Retrieve component season information.
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/componentSeason"
+```
+
+#### Get Season
+- **Endpoint**: `/{lang}/season`
+- **Method**: GET
+- **Description**: Retrieve season information.
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/season"
+```
+
+
+## Game
+
+#### Get Game Information
+- **Endpoint**: `/{lang}/game`
+- **Method**: GET
+- **Description**: Retrieve game information.
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/game"
+```
+
+#### Get Game Metadata
+- **Endpoint**: `/{lang}/game/meta`
+- **Method**: GET
+- **Description**: Retrieve metadata for game.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/game/meta"
+```
+
+
+
+
+## Miscellaneous
+
+### Configuration
+
+#### Get Configuration
+- **Endpoint**: `/{lang}/config`
+- **Method**: GET
+- **Description**: Retrieve configuration information.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/config"
+```
+
+#### Ping the Server
+- **Endpoint**: `/ping`
+- **Method**: GET
+- **Description**: Ping the server to check connectivity.
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/ping"
+```
+
+#### Get Country Information
+- **Endpoint**: `/{lang}/country`
+- **Method**: GET
+- **Description**: Retrieve country information. Returns list of all countries with a hockey presence(?)
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/country"
+```
+
+#### Get Shift Charts
+- **Endpoint**: `/{lang}/shiftcharts`
+- **Method**: GET
+- **Description**: Retrieve shift charts for a specific language. **Returns an error for missing gameId, but WADL doesn't specify requiring a gameId**
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/shiftcharts"
+```
+
+
+### Glossary
+
+#### Get Glossary
+- **Endpoint**: `/{lang}/glossary`
+- **Method**: GET
+- **Description**: Retrieve the glossary for a specific language.
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/glossary"
+```
+
+### Content Module
+
+#### Get Content Module
+- **Endpoint**: `/{lang}/content/module`
+- **Method**: GET
+- **Description**: Retrieve content module information. **Not sure what this one is for. Example returns empty data.**
+- **Parameters**:
+  - `lang` (string) - Language code
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/content/module/overview"
+```
+
+#### Get Metadata for Content Module
+- **Endpoint**: `/content/module/meta`
+- **Method**: GET
+- **Description**: Retrieve metadata for content modules. **Example returns 404**
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/content/module/meta"
+```
+
+
+---
+
+*For the full WADL with extended resources: [WADL Link](https://api.nhle.com/stats/rest/application.wadl?detail=true)*
