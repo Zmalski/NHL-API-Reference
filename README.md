@@ -682,4 +682,4 @@ curl -X GET "https://api-web.nhle.com/v1/location"
 
 
 ---
-*For the full WADL with extended resources, use the query parameter detail: [WADL Link](https://api-web.nhle.com/application.wadl?detail=true)*
+*For the full WADL with extended resources: [WADL Link](https://api-web.nhle.com/application.wadl?detail=true)*
