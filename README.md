@@ -2,6 +2,8 @@
 
 This document aims to serve as an unofficial reference for the NHL APIs. Corrections and/or suggestions are welcome.
 
+Please note that there appears to be *two* primary sources for official NHL APIs. (api-web.nhle.com and api.nhle.com/stats/rest). This document is broken into distinct sections detailing each API.
+
 ## Table of Contents
 ### [api-web.nhle.com](#nhl-web-api-documentation)
 1. [Base URL](#base-url)
