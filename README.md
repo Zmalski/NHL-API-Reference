@@ -98,7 +98,7 @@ This document aims to serve as an unofficial reference for the NHL APIs. Correct
 5. [Game](#game)
    1. [Get Game Information](#get-game-information)
    2. [Get Game Metadata](#get-game-metadata)
-6. [Miscellaneous](#miscellaneous)
+6. [Miscellaneous](#miscellaneous-1)
    1. [Configuration](#configuration)
       1. [Get Configuration](#get-configuration)
       2. [Ping the Server](#ping-the-server)
