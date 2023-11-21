@@ -1147,18 +1147,20 @@ curl -X GET "https://api.nhle.com/stats/rest/ping"
 curl -X GET "https://api.nhle.com/stats/rest/en/country"
 ```
 
+
 ### Get Shift Charts
-- **Endpoint**: `/{lang}/shiftcharts`
+- **Endpoint**: `/{lang}/shiftcharts?cayenneExp=gameId={game_id}`
 - **Method**: GET
-- **Description**: Retrieve shift charts for a specific language. **Returns an error for missing gameId, but WADL doesn't specify requiring a gameId**
+- **Description**: Retrieve shift charts for a specific game.
 - **Parameters**:
   - `lang` (string) - Language code
+  - `game-id` (int) - Game ID
 - **Response**: JSON format
 
 ##### Example using cURL:
 
 ```bash
-curl -X GET "https://api.nhle.com/stats/rest/en/shiftcharts"
+curl -X GET "https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=2021020001"
 ```
 
 
