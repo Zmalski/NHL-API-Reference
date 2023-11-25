@@ -1014,9 +1014,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/team"
   - `factCayenneExp` (query, string) - Optional
   - `include` (query, string) - Optional
   - `exclude` (query, string) - Optional
-  -
-
- `cayenneExp` (query, string) - Optional
+  - `cayenneExp` (query, string) - Optional
   - `sort` (query, string) - Optional
   - `dir` (query, string) - Optional
   - `start` (query, int) - Optional
@@ -1026,7 +1024,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/team"
 ##### Example using cURL:
 
 ```bash
-curl -X GET "https://api.nhle.com/stats/rest/en/team/summary"
+curl -X GET "https://api.nhle.com/stats/rest/en/team/summary?sort=shotsForPerGame&cayenneExp=seasonId=20232024%20and%20gameTypeId=2"
 ```
 
 ### Get Franchise Information
