@@ -952,7 +952,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/leaders/goalies/gaa"
 ##### Example using cURL:
 
 ```bash
-curl -X GET "https://api.nhle.com/stats/rest/en/skater/summary?limit=72&start=15&sort=wins&cayenneExp=seasonId=20232024"
+curl -X GET "https://api.nhle.com/stats/rest/en/goalie/summary?limit=72&start=15&sort=wins&cayenneExp=seasonId=20232024"
 ```
 
 #### Get Goalie Milestones
