@@ -887,7 +887,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/skater"
 #### Get Skater Stats
 - **Endpoint**: `/{lang}/skater/{report}`
 - **Method**: GET
-- **Description**: Retrieve skater stats for a specific report. **Unknown what "reports" are accepted. Returns 500 at time of writing**
+- **Description**: Retrieve skater stats for a specific report.
 - **Parameters**:
   - `report` (string) - Skater report
   - `lang` (string) - Language code
@@ -897,7 +897,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/skater"
   - `factCayenneExp` (query, string) - Optional
   - `include` (query, string) - Optional
   - `exclude` (query, string) - Optional
-  - `cayenneExp` (query, string) - Optional
+  - `cayenneExp` (query, string) - **Required**
   - `sort` (query, string) - Optional
   - `dir` (query, string) - Optional
   - `start` (query, int) - Optional
@@ -907,7 +907,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/skater"
 ##### Example using cURL:
 
 ```bash
-curl -X GET "https://api.nhle.com/stats/rest/en/skater/summary"
+curl -X GET "https://api.nhle.com/stats/rest/en/skater/summary?limit=72&start=17&sort=points&cayenneExp=seasonId=20232024"
 ```
 
 
@@ -932,7 +932,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/leaders/goalies/gaa"
 #### Get Goalie Stats
 - **Endpoint**: `/{lang}/goalie/{report}`
 - **Method**: GET
-- **Description**: Retrieve goalie stats for a specific report. **Unknown what "reports" are accepted. Returns 500 at time of writing**
+- **Description**: Retrieve goalie stats for a specific report.
 - **Parameters**:
   - `report` (string) - Goalie report
   - `lang` (string) - Language code
@@ -942,7 +942,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/leaders/goalies/gaa"
   - `factCayenneExp` (query, string) - Optional
   - `include` (query, string) - Optional
   - `exclude` (query, string) - Optional
-  - `cayenneExp` (query, string) - Optional
+  - `cayenneExp` (query, string) - **Required**
   - `sort` (query, string) - Optional
   - `dir` (query, string) - Optional
   - `start` (query, int) - Optional
@@ -952,7 +952,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/leaders/goalies/gaa"
 ##### Example using cURL:
 
 ```bash
-curl -X GET "https://api.nhle.com/stats/rest/en/goalie/summary"
+curl -X GET "https://api.nhle.com/stats/rest/en/skater/summary?limit=72&start=15&sort=wins&cayenneExp=seasonId=20232024"
 ```
 
 #### Get Goalie Milestones
