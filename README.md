@@ -812,7 +812,6 @@ curl -X GET "https://api-web.nhle.com/v1/location"
 # NHL Stats API Documentation
 
 This section provides documentation for the NHL Stats API (https://api.nhle.com/stats/rest).
-**Note:** Many of the endpoints in this section seem either inconsistend/WIP/deprecated/bug-ridden.
 
 
 ## Base URL
