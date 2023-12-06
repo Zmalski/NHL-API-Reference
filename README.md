@@ -99,7 +99,7 @@ Please note that there appears to be *two* primary sources for official NHL APIs
    1. [Get Component Season](#get-component-season)
    2. [Get Season](#get-season)
 5. [Game](#game)
-   1. [Get Game Information](#get-game-information)
+   1. [Get Game Information](#get-game-information-1)
    2. [Get Game Metadata](#get-game-metadata)
 6. [Miscellaneous](#miscellaneous-1)
    1. [Configuration](#configuration)
