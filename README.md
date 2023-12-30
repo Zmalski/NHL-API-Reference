@@ -187,7 +187,7 @@ curl -L -X GET "https://api-web.nhle.com/v1/player/8478402/game-log/now"
 - **Description**: Retrieve current skater stats leaders.
 - **Parameters**:
   - `categories` (query, string) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ###### Example using cURL:
@@ -205,7 +205,7 @@ curl -L -X GET "https://api-web.nhle.com/v1/skater-stats-leaders/current?categor
   - `game-type` (int) - Game type (guessing 2 for regular season, 3 for playoffs)
 - **Parameters**:
   - `categories` (query, string) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ###### Example using cURL:
@@ -222,7 +222,7 @@ curl -X GET "https://api-web.nhle.com/v1/skater-stats-leaders/20222023/2?categor
 - **Description**: Retrieve current goalie stats leaders.
 - **Request Parameters**:
   - `categories` (query, string) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ###### Example using cURL:
@@ -240,7 +240,7 @@ curl -L -X GET "https://api-web.nhle.com/v1/goalie-stats-leaders/current?categor
   - `game-type` (int) - Game type (guessing 2 for regular season, 3 for playoffs)
 - **Request Parameters**:
   - `categories` (query, string) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ###### Example using cURL:
@@ -900,7 +900,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/skater"
   - `sort` (query, string) - Optional
   - `dir` (query, string) - Optional
   - `start` (query, int) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ##### Example using cURL:
@@ -945,7 +945,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/leaders/goalies/gaa"
   - `sort` (query, string) - Optional
   - `dir` (query, string) - Optional
   - `start` (query, int) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ##### Example using cURL:
@@ -1017,7 +1017,7 @@ curl -X GET "https://api.nhle.com/stats/rest/en/team"
   - `sort` (query, string) - Optional
   - `dir` (query, string) - Optional
   - `start` (query, int) - Optional
-  - `limit` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ##### Example using cURL:
