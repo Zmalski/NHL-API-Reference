@@ -71,10 +71,9 @@ Please note that there appears to be *two* primary sources for official NHL APIs
    1. [Meta](#meta)
       1. [Get Meta Information](#get-meta-information)
       2. [Get Game Information](#get-game-information)
+      3. [Get Location](#get-location)
    2. [OpenAPI Specification](#openapi-specification)
       1. [Get OpenAPI Specification](#get-openapi-specification)
-   3. [Unknown](#unknown)
-      1. [Get Location](#get-location)
 ---
 ### [api.nhle.com/stats/rest](#nhl-stats-api-documentation)
 1. [Base URL](#base-url-1)
@@ -773,6 +772,18 @@ curl -X GET "https://api-web.nhle.com/v1/meta?players=8478402&teams=EDM,TOR"
 curl -X GET "https://api-web.nhle.com/v1/meta/game/2023020204"
 ```
 
+#### Get Location
+- **Endpoint**: `/v1/location`
+- **Method**: GET
+- **Description**: Returns country code tha the webserver thinks the user is in.
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/location"
+```
+
 ### OpenAPI Specification
 
 #### Get OpenAPI Specification
@@ -786,20 +797,6 @@ curl -X GET "https://api-web.nhle.com/v1/meta/game/2023020204"
 ```bash
 curl -X GET "https://api-web.nhle.com/model/v1/openapi.json"
 ```
-
-### Unknown
-#### Get Location
-- **Endpoint**: `/v1/location`
-- **Method**: GET
-- **Description**: Not sure what this one is for. Returns a country code.
-- **Response**: JSON format
-
-###### Example using cURL:
-
-```bash
-curl -X GET "https://api-web.nhle.com/v1/location"
-```
-
 
 ---
 
