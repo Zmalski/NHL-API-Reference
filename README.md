@@ -111,7 +111,9 @@ Please note that there appears to be *two* primary sources for official NHL APIs
    6. [Content Module](#content-module)
       1. [Get Content Module](#get-content-module)
       2. [Get Metadata for Content Module](#get-metadata-for-content-module)
-
+   7. [Team Logos](#team-logos)
+      1. [Get Team Logos](#get-team-logos)
+      
 
 ---
 
@@ -1200,6 +1202,26 @@ curl -X GET "https://api.nhle.com/stats/rest/en/content/module/overview"
 
 ```bash
 curl -X GET "https://api.nhle.com/stats/rest/content/module/meta"
+```
+
+### Team Logos
+
+#### Get Team Logos
+
+- **Endpoint**: `/logos/nhl/svg/{teamAbbrev}_{colour}.svg`
+- **Method**: GET
+- **Description**: Retrieve content module information. **Not sure what this one is for. Example returns empty data.**
+- **Parameters**:
+  - `teamAbbrev` (string) - Team name abbreviation (referred to as triCode or rawTricode https://api.nhle.com/stats/rest/en/team)
+  - `colour` (string) - Logo theme (light or dark)
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg"
+
+curl -X GET "https://assets.nhle.com/logos/nhl/svg/TOR_dark.svg"
 ```
 
 
