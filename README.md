@@ -1210,7 +1210,7 @@ curl -X GET "https://api.nhle.com/stats/rest/content/module/meta"
 
 - **Endpoint**: `/logos/nhl/svg/{teamAbbrev}_{colour}.svg`
 - **Method**: GET
-- **Description**: Retrieve content module information. **Not sure what this one is for. Example returns empty data.**
+- **Description**: Retrieve team logos
 - **Parameters**:
   - `teamAbbrev` (string) - Team name abbreviation (referred to as triCode or rawTricode https://api.nhle.com/stats/rest/en/team)
   - `colour` (string) - Logo theme (light or dark)
