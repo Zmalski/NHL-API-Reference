@@ -67,7 +67,10 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       1. [Get Partner Game Odds](#get-partner-game-odds)
 6. [Season](#season)
    1. [Get Seasons](#get-seasons)
-7. [Miscellaneous](#miscellaneous)
+7. [Draft](#draft)
+   1. [Get Draft Rankings](#get-draft-rankings)
+   2. [Get Draft Rankings by Date](#get-draft-rankings-by-date)
+8. [Miscellaneous](#miscellaneous)
    1. [Meta](#meta)
       1. [Get Meta Information](#get-meta-information)
       2. [Get Game Information](#get-game-information)
@@ -736,6 +739,34 @@ curl -L -X GET "https://api-web.nhle.com/v1/partner-game/US/now"
 curl -X GET "https://api-web.nhle.com/v1/season"
 ```
 
+## Draft
+
+#### Get Draft Rankings
+- **Endpoint** `/v1/draft/rankings/now`
+- **Method**: GET
+- **Description**: Retrieve a list of all draft prospects by category of prospect as of the current moment.
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft/rankings/now"
+```
+
+#### Get Draft Rankings by Date
+- **Endpoint** `/v1/draft/rankings/{season}/{prospect_category}`
+- **Method**: GET
+- **Description**: Retrieve a list of all draft prospects by category of prospect for a specific season.
+- **Parameters**:
+  - `season` (int) - Season in YYYY format
+  - `prospect_category` (int) - Prospect Category (1 - North American Skater, 2 - International Skater, 3 - North American Goalie, 4 - International Goalie)
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft/rankings/2023/1"
+```
 
 
 ## Miscellaneous
