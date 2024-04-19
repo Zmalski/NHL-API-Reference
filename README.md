@@ -725,6 +725,59 @@ curl -L -X GET "https://api-web.nhle.com/v1/partner-game/US/now"
 
 
 
+## Playoff Information
+
+### Overview
+
+#### Playoff Series Carousel
+- **Endpoint**: `/v1/playoff-series/carousel/{season}/`
+- **Method**: GET
+- **Description**: Retrieve an overview of each playoff series.
+- **Parameters**:
+  - `season` (int) - Season in YYYYYYYY format, where the first four digits represent the start year of the season, and the last four digits represent the end year.
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/playoff-series/carousel/20232024/"
+```
+
+### Schedule
+
+#### Get Playoff Series Schedule
+- **Endpoint**: `/v1/schedule/playoff-series/{season}/{series_letter}/`
+- **Method**: GET
+- **Description**: Retrieve the schedule for a specific playoff series.
+- **Parameters**:
+  - `season` (int) - Season in YYYYYYYY format, where the first four digits represent the start year of the season, and the last four digits represent the end year.
+  - `series_letter` (string) - Single letter indicating which series to retrieve. Is sequential in alphabetical order.
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/schedule/playoff-series/20232024/a"
+```
+
+### Bracket
+
+#### Get Playoff Bracket
+- **Endpoint**: `/v1/playoff-bracket/{year}`
+- **Method**: GET
+- **Description**: Retrieve the current bracket for a specific year's playoffs.
+- **Parameters**:
+  - `year` (int) - Year in YYYY format
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/playoff-bracket/2022"
+```
+
+
+
 ## Season
 
 #### Get Seasons
