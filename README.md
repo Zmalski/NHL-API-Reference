@@ -56,10 +56,11 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       3. [Get Scoreboard](#get-scoreboard)
    2. [Where to Watch](#where-to-watch)
       1. [Get Streams](#get-streams)
-   3. [Gamecenter](#gamecenter)
+   3. [Game Events](#game-events)
       1. [Get Play By Play](#get-play-by-play)
       2. [Get Landing](#get-landing)
       3. [Get Boxscore](#get-boxscore)
+      4. [Get Game Story](#get-game-story)
    4. [Network](#network)
       1. [Get TV Schedule for a Specific Date](#get-tv-schedule-for-a-specific-date)
       2. [Get Current TV Schedule](#get-current-tv-schedule)
@@ -645,7 +646,7 @@ curl -L -X GET "https://api-web.nhle.com/v1/scoreboard/now"
 curl -X GET "https://api-web.nhle.com/v1/where-to-watch"
 ```
 
-### Gamecenter
+### Game Events
 #### Get Play By Play
 - **Endpoint**: `/v1/gamecenter/{game-id}/play-by-play`
 - **Method**: GET
@@ -687,6 +688,21 @@ curl -X GET "https://api-web.nhle.com/v1/gamecenter/2023020204/landing"
 ```bash
 curl -X GET "https://api-web.nhle.com/v1/gamecenter/2023020204/boxscore"
 ```
+
+#### Get Game Story
+- **Endpoint**: `/v1/wsc/game-story/{game-id}`
+- **Method**: GET
+- **Description**: Retrieve game story information for a specific game.
+- **Parameters**:
+  - `game-id` (int) - Game ID
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/wsc/game-story/2023020204"
+```
+
 ### Network
 
 #### Get TV Schedule for a Specific Date
