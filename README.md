@@ -78,6 +78,7 @@ Please note that there appears to be *two* primary sources for official NHL APIs
 8. [Draft](#draft)
    1. [Get Draft Rankings](#get-draft-rankings)
    2. [Get Draft Rankings by Date](#get-draft-rankings-by-date)
+   3. [Get Draft Picks](#get-draft-picks)
 9. [Miscellaneous](#miscellaneous)
    1. [Meta](#meta)
       1. [Get Meta Information](#get-meta-information)
@@ -842,6 +843,20 @@ curl -X GET "https://api-web.nhle.com/v1/draft/rankings/now"
 
 ```bash
 curl -X GET "https://api-web.nhle.com/v1/draft/rankings/2023/1"
+```
+
+#### Get Draft Picks
+- **Endpoint** `https://api-web.nhle.com/v1/draft/picks/{season}/{round}`
+- **Method**: GET
+- **Description**: Retrieve a list of draft picks for a specific season.
+- **Parameters**:
+  - `season` (int) - Season in YYYY format
+  - `round` (string) - Selectable round (1-7, 1 for round 1 etc.) or `all` for all selectable rounds
+- **Response**: JSON format
+
+###### Example using cURL:
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft/picks/2023/all"
 ```
 
 
