@@ -153,9 +153,9 @@ https://api-web.nhle.com/
 - **Parameters**:
   - `player` (int) - Player ID
   - `season` (int) - Season in YYYYYYYY format, where the first four digits represent the start year of the season, and the last four digits represent the end year.
-  - `game-type` (int) - Game type (guessing 2 for regular season, 3 for playoffs)
+  - `game-type` (int) - Game type 1 Is for regular season, 2 is for special events (i.e the Global Series) & 3 Is for Playoffs 
 - **Response**: JSON format
-
+If the game type is 2 (special event) the response will include a specialEventLogo 
 ###### Example using cURL:
 
 ```bash
