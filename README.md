@@ -78,12 +78,25 @@ Please note that there appears to be *two* primary sources for official NHL APIs
 8. [Draft](#draft)
    1. [Get Draft Rankings](#get-draft-rankings)
    2. [Get Draft Rankings by Date](#get-draft-rankings-by-date)
+   3. [Get Draft Tracker Now](#get-draft-tracker-now)
+   4. [Get Draft Picks Now](#get-draft-picks-now)
+   5. [Get Draft Picks by Year and Round](#get-draft-picks-by-year-and-round)
+   6. [Get All Draft Picks by Year](#get-all-draft-picks-by-year)
 9. [Miscellaneous](#miscellaneous)
    1. [Meta](#meta)
       1. [Get Meta Information](#get-meta-information)
       2. [Get Game Information](#get-game-information)
       3. [Get Location](#get-location)
-   2. [OpenAPI Specification](#openapi-specification)
+      4. [Get Playoff Series Metadata](#get-playoff-series-metadata)
+   2. [Postal Lookup](#postal-lookup)
+      1. [Get Postal Code Information](#get-postal-code-information)
+   3. [Game Replays](#game-replays)
+      1. [Get Goal Replay](#get-goal-replay)
+      2. [Get Play Replay](#get-play-replay)
+   4. [Additional Game Content](#additional-game-content)
+      1. [Get Game Right Rail Content](#get-game-right-rail-content)
+      2. [Get WSC Play By Play](#get-wsc-play-by-play)
+   5. [OpenAPI Specification](#openapi-specification)
       1. [Get OpenAPI Specification](#get-openapi-specification)
 ---
 ### [api.nhle.com/stats/rest](#nhl-stats-api-documentation)
@@ -103,8 +116,9 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       1. [Get Draft Information](#get-draft-information)
 3. [Teams](#teams)
    1. [Get Team Information](#get-team-information)
-   2. [Get Team Stats](#get-team-stats)
-   3. [Get Franchise Information](#get-franchise-information)
+   2. [Get Team By ID](#get-team-by-id)
+   3. [Get Team Stats](#get-team-stats)
+   4. [Get Franchise Information](#get-franchise-information)
 4. [Season](#season)
    1. [Get Component Season](#get-component-season)
    2. [Get Season](#get-season)
@@ -121,7 +135,6 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       1. [Get Glossary](#get-glossary)
    6. [Content Module](#content-module)
       1. [Get Content Module](#get-content-module)
-      2. [Get Metadata for Content Module](#get-metadata-for-content-module)
 
 
 ---
@@ -844,6 +857,59 @@ curl -X GET "https://api-web.nhle.com/v1/draft/rankings/now"
 curl -X GET "https://api-web.nhle.com/v1/draft/rankings/2023/1"
 ```
 
+#### Get Draft Tracker Now
+- **Endpoint**: `/v1/draft-tracker/picks/now`
+- **Method**: GET
+- **Description**: Retrieve current draft tracker information with the most recent draft picks.
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft-tracker/picks/now"
+```
+
+#### Get Draft Picks Now
+- **Endpoint**: `/v1/draft/picks/now`
+- **Method**: GET
+- **Description**: Retrieve the most recent draft picks information.
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft/picks/now"
+```
+
+#### Get Draft Picks by Year and Round
+- **Endpoint**: `/v1/draft/picks/{year}/{round}`
+- **Method**: GET
+- **Description**: Retrieve draft picks for a specific year and round.
+- **Parameters**:
+  - `year` (int) - Year in YYYY format
+  - `round` (int) - Draft round number
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft/picks/2023/1"
+```
+
+#### Get All Draft Picks by Year
+- **Endpoint**: `/v1/draft/picks/{year}/all`
+- **Method**: GET
+- **Description**: Retrieve all draft picks for a specific year.
+- **Parameters**:
+  - `year` (int) - Year in YYYY format
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/draft/picks/2023/all"
+```
+
 
 ## Miscellaneous
 
@@ -882,13 +948,106 @@ curl -X GET "https://api-web.nhle.com/v1/meta/game/2023020204"
 #### Get Location
 - **Endpoint**: `/v1/location`
 - **Method**: GET
-- **Description**: Returns country code tha the webserver thinks the user is in.
+- **Description**: Returns country code that the webserver thinks the user is in.
 - **Response**: JSON format
 
 ###### Example using cURL:
 
 ```bash
 curl -X GET "https://api-web.nhle.com/v1/location"
+```
+
+#### Get Playoff Series Metadata
+- **Endpoint**: `/v1/meta/playoff-series/{year}/{series_letter}`
+- **Method**: GET
+- **Description**: Retrieve metadata for a specific playoff series.
+- **Parameters**:
+  - `year` (int) - Year in YYYY format
+  - `series_letter` (string) - Single letter identifying the playoff series
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/meta/playoff-series/2023/a"
+```
+
+### Postal Lookup
+
+#### Get Postal Code Information
+- **Endpoint**: `/v1/postal-lookup/{postalCode}`
+- **Method**: GET
+- **Description**: Retrieves information based on a postal code.
+- **Parameters**:
+  - `postalCode` (string) - Postal (or zip) code to look up
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/postal-lookup/90210"
+```
+
+### Game Replays
+
+#### Get Goal Replay
+- **Endpoint**: `/v1/ppt-replay/goal/{game-id}/{event-number}`
+- **Method**: GET
+- **Description**: Retrieves goal replay information for a specific game and event.
+- **Parameters**:
+  - `game-id` (int) - Game ID
+  - `event-number` (int) - Event number within the game
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/ppt-replay/goal/2023020204/12"
+```
+
+#### Get Play Replay
+- **Endpoint**: `/v1/ppt-replay/{game-id}/{event-number}`
+- **Method**: GET
+- **Description**: Retrieves replay information for a specific game and event.
+- **Parameters**:
+  - `game-id` (int) - Game ID
+  - `event-number` (int) - Event number within the game
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/ppt-replay/2023020204/12"
+```
+
+### Additional Game Content
+
+#### Get Game Right Rail Content
+- **Endpoint**: `/v1/gamecenter/{game-id}/right-rail`
+- **Method**: GET
+- **Description**: Retrieves sidebar content for the game center view.
+- **Parameters**:
+  - `game-id` (int) - Game ID
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/gamecenter/2023020204/right-rail"
+```
+
+#### Get WSC Play By Play
+- **Endpoint**: `/v1/wsc/play-by-play/{game-id}`
+- **Method**: GET
+- **Description**: Retrieves WSC (World Showcase) play-by-play information for a specific game.
+- **Parameters**:
+  - `game-id` (int) - Game ID
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/wsc/play-by-play/2023020204"
 ```
 
 ### OpenAPI Specification
@@ -1089,7 +1248,6 @@ curl -X GET "https://api.nhle.com/stats/rest/en/draft"
 
 
 ## Teams
-
 #### Get Team Information
 - **Endpoint**: `/{lang}/team`
 - **Method**: GET
@@ -1102,6 +1260,21 @@ curl -X GET "https://api.nhle.com/stats/rest/en/draft"
 
 ```bash
 curl -X GET "https://api.nhle.com/stats/rest/en/team"
+```
+
+#### Get Team By ID
+- **Endpoint**: `/{lang}/team/id/{id}`
+- **Method**: GET
+- **Description**: Retrieve information for a specific team by ID.
+- **Parameters**:
+  - `lang` (string) - Language code
+  - `id` (string) - Team ID
+- **Response**: JSON format
+
+##### Example using cURL:
+
+```bash
+curl -X GET "https://api.nhle.com/stats/rest/en/team/id/10"
 ```
 
 #### Get Team Stats
@@ -1282,13 +1455,13 @@ curl -X GET "https://api.nhle.com/stats/rest/en/glossary"
 ```
 
 ### Content Module
-
 #### Get Content Module
-- **Endpoint**: `/{lang}/content/module`
+- **Endpoint**: `/{lang}/content/module/{templateKey}`
 - **Method**: GET
-- **Description**: Retrieve content module information. **Not sure what this one is for. Example returns empty data.**
+- **Description**: Retrieve content module information for a specific template.
 - **Parameters**:
   - `lang` (string) - Language code
+  - `templateKey` (string) - Template key/name
 - **Response**: JSON format
 
 ##### Example using cURL:
@@ -1297,17 +1470,6 @@ curl -X GET "https://api.nhle.com/stats/rest/en/glossary"
 curl -X GET "https://api.nhle.com/stats/rest/en/content/module/overview"
 ```
 
-#### Get Metadata for Content Module
-- **Endpoint**: `/content/module/meta`
-- **Method**: GET
-- **Description**: Retrieve metadata for content modules. **Example returns 404**
-- **Response**: JSON format
-
-##### Example using cURL:
-
-```bash
-curl -X GET "https://api.nhle.com/stats/rest/content/module/meta"
-```
 
 
 ---
