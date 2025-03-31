@@ -80,8 +80,7 @@ Please note that there appears to be *two* primary sources for official NHL APIs
    2. [Get Draft Rankings by Date](#get-draft-rankings-by-date)
    3. [Get Draft Tracker Now](#get-draft-tracker-now)
    4. [Get Draft Picks Now](#get-draft-picks-now)
-   5. [Get Draft Picks by Year and Round](#get-draft-picks-by-year-and-round)
-   6. [Get All Draft Picks by Year](#get-all-draft-picks-by-year)
+   5. [Get Draft Picks](#get-draft-picks)
 9. [Miscellaneous](#miscellaneous)
    1. [Meta](#meta)
       1. [Get Meta Information](#get-meta-information)
@@ -881,31 +880,16 @@ curl -X GET "https://api-web.nhle.com/v1/draft-tracker/picks/now"
 curl -X GET "https://api-web.nhle.com/v1/draft/picks/now"
 ```
 
-#### Get Draft Picks by Year and Round
-- **Endpoint**: `/v1/draft/picks/{year}/{round}`
+#### Get Draft Picks
+- **Endpoint** `https://api-web.nhle.com/v1/draft/picks/{season}/{round}`
 - **Method**: GET
-- **Description**: Retrieve draft picks for a specific year and round.
+- **Description**: Retrieve a list of draft picks for a specific season.
 - **Parameters**:
-  - `year` (int) - Year in YYYY format
-  - `round` (int) - Draft round number
+  - `season` (int) - Season in YYYY format
+  - `round` (string) - Selectable round (1-7, 1 for round 1 etc.) or `all` for all selectable rounds
 - **Response**: JSON format
 
 ###### Example using cURL:
-
-```bash
-curl -X GET "https://api-web.nhle.com/v1/draft/picks/2023/1"
-```
-
-#### Get All Draft Picks by Year
-- **Endpoint**: `/v1/draft/picks/{year}/all`
-- **Method**: GET
-- **Description**: Retrieve all draft picks for a specific year.
-- **Parameters**:
-  - `year` (int) - Year in YYYY format
-- **Response**: JSON format
-
-###### Example using cURL:
-
 ```bash
 curl -X GET "https://api-web.nhle.com/v1/draft/picks/2023/all"
 ```
