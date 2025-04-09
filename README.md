@@ -100,8 +100,9 @@ Please note that there appears to be *two* primary sources for official NHL APIs
 ---
 ### [api.nhle.com/stats/rest](#nhl-stats-api-documentation)
 1. [Base URL](#base-url-1)
-2. [Players](#players)
-   1. [Get Player Information](#get-player-information)
+2. [Players](#players-1)
+   1. [Players](#players-2)
+      1. [Get Player Information](#get-player-information)
    2. [Skaters](#skaters)
       1. [Get Skater Leaders](#get-skater-leaders)
       2. [Get Skater Milestones](#get-skater-milestones)
@@ -113,18 +114,18 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       3. [Get Goalie Milestones](#get-goalie-milestones)
    4. [Draft](#draft)
       1. [Get Draft Information](#get-draft-information)
-3. [Teams](#teams)
+4. [Teams](#teams)
    1. [Get Team Information](#get-team-information)
    2. [Get Team By ID](#get-team-by-id)
    3. [Get Team Stats](#get-team-stats)
    4. [Get Franchise Information](#get-franchise-information)
-4. [Season](#season)
+5. [Season](#season)
    1. [Get Component Season](#get-component-season)
    2. [Get Season](#get-season)
-5. [Game](#game)
+6. [Game](#game)
    1. [Get Game Information](#get-game-information-1)
    2. [Get Game Metadata](#get-game-metadata)
-6. [Miscellaneous](#miscellaneous-1)
+7. [Miscellaneous](#miscellaneous-1)
    1. [Configuration](#configuration)
       1. [Get Configuration](#get-configuration)
    2. [Ping the Server](#ping-the-server)
@@ -1071,18 +1072,28 @@ https://api.nhle.com/stats/rest
 
 ## Players
 
+### Players
+
 #### Get Player Information
 - **Endpoint**: `/{lang}/players`
 - **Method**: GET
-- **Description**: Retrieve player information. Currently seems to return a truncated list with a total.
+- **Description**: Retrieve basic player information. (Responses limited to 5 results)
 - **Parameters**:
   - `lang` (string) - Language code
+- **Request Parameters**:
+  - `include` (query, string) - Optional
+  - `exclude` (query, string) - Optional
+  - `cayenneExp` (query, string) - Optional
+  - `sort` (query, string) - Optional
+  - `dir` (query, string) - Optional
+  - `start` (query, int) - Optional
+  - `limit` (query, int) - Optional (**Note:** a limit of -1 will return all results)
 - **Response**: JSON format
 
 ##### Example using cURL:
 
 ```bash
-curl -X GET "https://api.nhle.com/stats/rest/en/players"
+curl -X GET "https://api.nhle.com/stats/rest/en/players?limit=3&sort=lastName&dir=asc&cayenneExp=currentTeamId=7"
 ```
 
 ### Skaters
