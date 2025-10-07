@@ -97,6 +97,47 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       2. [Get WSC Play By Play](#get-wsc-play-by-play)
    5. [OpenAPI Specification](#openapi-specification)
       1. [Get OpenAPI Specification](#get-openapi-specification)
+10. [NHL Edge Data](#NHL Edge Data)
+    1. [Team Data](#Team Data)
+       1. [Team Details](#Team Details)
+       2. [Team Landing](#Team Landing)
+       3. [Team Comparison](#Team Comparison)
+       4. [Team Skating Distance - Top 10](#Team Skating Distance - Top 10)
+       5. [Team Skating Distance - Detail](#Team Skating Distance - Detail)
+       6. [Team Skating Speed - Top 10](#Team Skating Speed - Top 10)
+       7. [Team Skating Speed - Detail](#Team Skating Speed - Detail)
+       8. [Team Zone Time - Top 10](#Team Zone Time - Top 10)
+       9. [Team Zone Time - Details](#Team Zone Time - Details)
+       10. [Team Shot Speed - Top 10](#Team Shot Speed - Top 10)
+       11. [Team Shot Speed - Detail](#Team Shot Speed - Detail)
+       12. [Team Shot Location - Top 10](#Team Shot Location - Top 10)
+       13. [Team Shot Location - Detail](#Team Shot Location - Detail)
+    2. [Skater Data](#Skater Data)
+       1. [Skater Detail](#Skater Detail)
+       2. [Skater Landing](#Skater Landing)
+       3. [Skater Comparison](#Skater Comparison)
+       4. [Skater Distance - Top 10](#Skater Distance - Top 10)
+       5. [Skater Distance - Detail](#Skater Distance - Detail)
+       6. [Skater Speed - Top 10](#Skater Speed - Top 10)
+       7. [Skater Speed - Detail](#Skater Speed - Detail)
+       8. [Skater Zone Time - Top 10](#Skater Zone Time - Top 10)
+       9. [Skater Zone Time - Detail](#Skater Zone Time - Detail)
+       10. [Skater Shot Speed - Top 10](#Skater Shot Speed - Top 10)
+       11. [Skater Shot Speed - Detail](#Skater Shot Speed - Detail)
+       12. [Skater Shot Location - Top 10](#Skater Shot Location - Top 10)
+       13. [Skater Shot Location - Detail](#Skater Shot Location - Detail)
+       14. [CAT - Skater Detail](#CAT - Skater Detail)
+    3. [Goalie Data](#Goalie Data)
+       1. [Goalie Detail](#Goalie Detail)
+       2. [Goalie Landing](#Goalie Landing)
+       3. [Goalie Comparison](#Goalie Comparison)
+       4. [Goalie 5v5 - Top 10](#Goalie 5v5 - Top 10)
+       5. [Goalie 5v5 - Detail](#Goalie 5v5 - Detail)
+       6. [Goalie Shot Location - Top 10](#Goalie Shot Location - Top 10)
+       7. [Goalie Shot Location - Detail](#Goalie Shot Location - Detail)
+       8. [Goalie Save Percentage - Top 10](#Goalie Save Percentage - Top 10)
+       9. [Goalie Save Percentage - Detail](#Goalie Save Percentage - Detail)
+       10. [CAT - Goalie Detail](#CAT - Goalie Detail)
 ---
 ### [api.nhle.com/stats/rest](#nhl-stats-api-documentation)
 1. [Base URL](#base-url-1)
@@ -1747,7 +1788,7 @@ curl -X GET "https://api-web.nhle.com/v1/edge/goalie-shot-location-top-10/{categ
 curl -X GET "https://api-web.nhle.com/v1/edge/goalie-shot-location-detail/8476999/20242025/2"
 ```
 
-#### Goalie Edge Save Percentage - Top 10
+#### Goalie Save Percentage - Top 10
 
 - **Endpoint**: `/v1/edge/goalie-edge-save-pctg-top-10/{sort-by}/{season}/{game-type}`; `/v1/edge/goalie-edge-save-pctg-top-10/{sort-by}/now`
 - **Method**: GET
