@@ -97,6 +97,47 @@ Please note that there appears to be *two* primary sources for official NHL APIs
       2. [Get WSC Play By Play](#get-wsc-play-by-play)
    5. [OpenAPI Specification](#openapi-specification)
       1. [Get OpenAPI Specification](#get-openapi-specification)
+10. [NHL Edge Data](#NHL Edge Data)
+    1. [Team Data](#Team Data)
+       1. [Team Details](#Team Details)
+       2. [Team Landing](#Team Landing)
+       3. [Team Comparison](#Team Comparison)
+       4. [Team Skating Distance - Top 10](#Team Skating Distance - Top 10)
+       5. [Team Skating Distance - Detail](#Team Skating Distance - Detail)
+       6. [Team Skating Speed - Top 10](#Team Skating Speed - Top 10)
+       7. [Team Skating Speed - Detail](#Team Skating Speed - Detail)
+       8. [Team Zone Time - Top 10](#Team Zone Time - Top 10)
+       9. [Team Zone Time - Details](#Team Zone Time - Details)
+       10. [Team Shot Speed - Top 10](#Team Shot Speed - Top 10)
+       11. [Team Shot Speed - Detail](#Team Shot Speed - Detail)
+       12. [Team Shot Location - Top 10](#Team Shot Location - Top 10)
+       13. [Team Shot Location - Detail](#Team Shot Location - Detail)
+    2. [Skater Data](#Skater Data)
+       1. [Skater Detail](#Skater Detail)
+       2. [Skater Landing](#Skater Landing)
+       3. [Skater Comparison](#Skater Comparison)
+       4. [Skater Distance - Top 10](#Skater Distance - Top 10)
+       5. [Skater Distance - Detail](#Skater Distance - Detail)
+       6. [Skater Speed - Top 10](#Skater Speed - Top 10)
+       7. [Skater Speed - Detail](#Skater Speed - Detail)
+       8. [Skater Zone Time - Top 10](#Skater Zone Time - Top 10)
+       9. [Skater Zone Time - Detail](#Skater Zone Time - Detail)
+       10. [Skater Shot Speed - Top 10](#Skater Shot Speed - Top 10)
+       11. [Skater Shot Speed - Detail](#Skater Shot Speed - Detail)
+       12. [Skater Shot Location - Top 10](#Skater Shot Location - Top 10)
+       13. [Skater Shot Location - Detail](#Skater Shot Location - Detail)
+       14. [CAT - Skater Detail](#CAT - Skater Detail)
+    3. [Goalie Data](#Goalie Data)
+       1. [Goalie Detail](#Goalie Detail)
+       2. [Goalie Landing](#Goalie Landing)
+       3. [Goalie Comparison](#Goalie Comparison)
+       4. [Goalie 5v5 - Top 10](#Goalie 5v5 - Top 10)
+       5. [Goalie 5v5 - Detail](#Goalie 5v5 - Detail)
+       6. [Goalie Shot Location - Top 10](#Goalie Shot Location - Top 10)
+       7. [Goalie Shot Location - Detail](#Goalie Shot Location - Detail)
+       8. [Goalie Save Percentage - Top 10](#Goalie Save Percentage - Top 10)
+       9. [Goalie Save Percentage - Detail](#Goalie Save Percentage - Detail)
+       10. [CAT - Goalie Detail](#CAT - Goalie Detail)
 ---
 ### [api.nhle.com/stats/rest](#nhl-stats-api-documentation)
 1. [Base URL](#base-url-1)
@@ -1051,6 +1092,757 @@ curl -X GET "https://api-web.nhle.com/model/v1/openapi.json"
 ---
 
 *For the full WADL with extended resources: [WADL Link](https://api-web.nhle.com/application.wadl?detail=true)*
+
+## NHL Edge Data
+
+### Team Data
+
+#### Team Details
+
+- **Endpoint**: `/v1/edge/team-detail/{team-id}/{season}/{game-type}`; `/v1/edge/team-detail/{team-id}/now`
+- **Method**: GET
+- **Description**: Retrieve team-based ranking for NHL Edge data
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-detail/9/20242025/2"
+```
+
+#### Team Landing
+
+- **Endpoint**: `/v1/edge/team-detail/{season}/{game-type}`; `/v1/edge/team-detail/now`
+- **Method**: GET
+- **Description**: Retrieve the leading team for each NHL Edge data point (shot attempts over 90, bursts over 22, distance per 60, high danger SOG, offensive, neutral and defensive zone time)
+- **Parameters**:
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-landing/20242025/2"
+```
+
+#### Team Comparison
+
+- **Endpoint**: `/v1/edge/team-comparison/{team-id}/{season}/{game-type}`; `/v1/edge/team-comparison/{team-id}/now`
+- **Method**: GET
+- **Description**: General information and comparison to league average for NHL Edge datapoints. Includes shots by location and shooting percentage by location.
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-comparison/9/20242025/2"
+```
+
+#### Team Skating Distance - Top 10
+
+- **Endpoint**: `/v1/edge/team-skating-distance-top-10/{positions}/{strength}/{sort-by}/{season}{game-type}`; `/v1/edge/team-skating-distance-top-10/{positions}/{strength}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve team-based ranking for NHL Edge data - **TODO** 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `strength` (str) - 
+    - 'all' - All situations
+    - 'pp' - Power-play
+    - 'pk' - Penalty kill
+    - 'es' - Even-strength
+  - `sort-by` (str) - String - **TODO** 
+    - 'total' - Total distance skated
+    - 'unknown' - Average distance skated per 60 - **TODO** 
+    - 'unknown' - Top distance skated in a game - **TODO** 
+    - 'unknown' - Top distance skated in a period - **TODO** 
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-skating-distance-top-10/F/pp/{sort-by}/20242025/2"
+```
+
+#### Team Skating Distance - Detail
+
+- **Endpoint**: `/v1/edge/team-skating-distance-detail/{team-id}/{season}/{game-type}`; `/v1/edge/team-skating-distance-detail/{team-id}/now`
+- **Method**: GET
+- **Description**: Skating distance details for all situations and positions, both in last 10 games and in the season. 
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-skating-distance-detail/9/20242025/2"
+```
+
+#### Team Skating Speed - Top 10
+
+- **Endpoint**: `/v1/edge/team-skating-speed-top-10/{position}/{sort-by}/{season}/{game-type}`; `v1/edge/team-skating-speed-top-10/{positions}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve team-based ranking for NHL Edge data - **TODO** 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `sort-by` (str) - String - **TODO** 
+    - 'max' - Max skating speed
+    - 'unknown' - 22 mph+ bursts
+    - 'unknown' - 20 mph+ bursts
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-skating-speed-top-10/F/max/20242025/2"
+```
+
+#### Team Skating Speed - Detail
+
+- **Endpoint**: `/v1/edge/team-skating-speed-detail/{team-id}/{season}/{game-type}`; `/v1/edge/team-skating-speed-detail/{team-id}/now`
+- **Method**: GET
+- **Description**: Zone time details by situation (All Situations/Even Strength/Power Play/Penalty Kill)
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-skating-speed-detail/9/20242025/2"
+```
+
+#### Team Zone Time - Top 10
+
+- **Endpoint**: `/v1/edge/team-zone-time-top-10/{strength}/{sort-by}/{season}/{game-type}`; `/v1/edge/team-zone-time-top-10/{strength}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Top 10 teams by specified zone time 
+- **Parameters**:
+  - `strength` (str) - 
+    - 'all' - All situations
+    - 'pp' - Power-play
+    - 'pk' - Penalty kill
+    - 'es' - Even-strength
+  - `sort-by` (str) - 
+    - 'offensive' - Offensive Zone
+    - 'neutral' - Neutral Zone
+    - 'defensive' - Defensive Zone
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-zone-time-top-10/es/offensive/20242025/2"
+```
+
+#### Team Zone Time - Details
+
+- **Endpoint**: `/v1/edge/team-zone-time-details/{team-id}/{season}/{game-type}`; `/v1/edge/team-zone-time-details/{team-id}/now`
+- **Method**: GET
+- **Description**: Zone time details by situation (All Situations/Even Strength/Power Play/Penalty Kill)
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-zone-time-details/9/20242025/2"
+```
+
+#### Team Shot Speed - Top 10
+
+- **Endpoint**: `/v1/edge/team-shot-speed-top-10/{positions}/{sort-by}/{season}/{game-type}`; `/v1/edge/team-shot-speed-top-10/{positions}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve team-based ranking for NHL Edge data - **TODO** 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `sort-by` (str) - String - **TODO** 
+    - 'max' - Maximum shot speed
+    - 'unknown' - 100+ mph - **TODO** 
+    - 'unknown' - 90+ mph - **TODO** 
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-shot-speed-top-10/F/{sort-by}/20242025/2"
+```
+
+#### Team Shot Speed - Detail
+
+- **Endpoint**: `/v1/edge/team-shot-speed-detail/{team-id}/{season}/{game-type}`; `/v1/edge/team-shot-speed-detail/{team-id}/now`
+- **Method**: GET
+- **Description**: Top 10 Shots by speed, shot speed details by position
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-shot-speed-detail/9/20242025/2"
+```
+
+#### Team Shot Location - Top 10
+
+- **Endpoint**: `/v1/edge/team-shot-location-top-10/{position}/{category}/{sort-by}/{season}/{game-type}`; `/v1/edge/team-shot-location-top-10/{position}/{category}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve team-based ranking for NHL Edge data - **TODO** 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `category` (str)  - **TODO** 
+    - 'unknown' - All Locations
+    - 'unknown' - High-Danger
+    - 'unknown' - Mid-Range
+    - 'unknown' - Long-Range
+  - `sort-by` (str) - String - **TODO** 
+    - 'unknown' - Shots on Goal
+    - 'unknown' - Goals
+    - 'unknown' - Shooting Percentage
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-shot-location-top-10/F/{category}/{sort-by}/20242025/2"
+```
+
+#### Team Shot Location - Detail
+
+- **Endpoint**: `/v1/edge/team-shot-location-detail/{team-id}/{season}/{game-type}`; `/v1/edge/team-shot-location-detail/{team-id}/now`
+- **Method**: GET
+- **Description**: Shot count by all locations and positions
+- **Parameters**:
+  - `team-id` (int) - Team ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/team-shot-location-detail/9/20242025/2"
+```
+
+#### 
+
+### Skater Data
+
+#### Skater Detail
+
+- **Endpoint**: `/v1/edge/skater-detail/{player-id}/{season}/{game-type}`; `/v1/edge/skater-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Retrieve player rankings for NHL Edge data, Includes top shot speed, skating speed, distance skated, shot on goal summary/details, zone time percentages.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-detail/8482116/20242025/2"
+```
+
+#### Skater Landing
+
+- **Endpoint**: `/v1/edge/skater-landing/{season}/{game-type}`; `/v1/edge/skater-landing/now`
+- **Method**: GET
+- **Description**: Retrieve leading player for NHL Edge data, Includes top shot speed, skating speed, distance skated, high danger SOG, zone time percentages.
+- **Parameters**:
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-landing/20242025/2"
+```
+
+#### Skater Comparison
+
+- **Endpoint**: `/v1/edge/skater-comparison/{player-id}/{season}/{game-type}`; `/v1/edge/skater-comparison/{player-id}/now`
+- **Method**: GET
+- **Description**: Retrieve NHL Edge data for the specified player, Includes skating distance and speed data, shot location and speed data, zone time details and zone starts. 
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-comparison/8482116/20242025/2"
+```
+
+#### Skater Distance - Top 10
+
+- **Endpoint**: `/v1/edge/skater-distance-top-10/{positions}/{strength}/{sort-by}/{season}/{game-type}`; `/v1/edge/skater-distance-top-10/{positions}/{strength}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve top 10 skaters in skating distance based on the provided filters 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `strength` (str) - 
+    - 'all' - All situations
+    - 'pp' - Power-play
+    - 'pk' - Penalty kill
+    - 'es' - Even-strength
+  - `sort-by` (str) - String - **TODO** 
+    - 'total' - Total distance skated
+    - 'unknown' - Average distance skated per 60 min
+    - 'unknown' - Top distance skated in a game
+    - 'unknown' - Top distance skated in a period
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-distance-top-10/D/all/total/20242025/2"
+```
+
+#### Skater Skating Distance - Detail
+
+- **Endpoint**: `/v1/edge/skater-skating-distance-detail/{player-id}/{season}/{game-type}`; `/v1/edge/skater-skating-distance-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Shot count by all locations and positions
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-skating-distance-detail/8482116/20242025/2"
+```
+
+#### Skater Speed - Top 10
+
+- **Endpoint**: `/v1/edge/skater-speed-top-10/{positions}/{sort-by}/{season}/{game-type}`; `/v1/edge/skater-speed-top-10/{positions}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve 10 fastest skaters based on the provided filters. 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `sort-by` (str) - String - **TODO** 
+    - 'max' - Max skating speed
+    - 'unknown' - 22 mph+ bursts
+    - 'unknown' - 20 mph+ bursts
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-speed-top-10/F/max/20242025/2"
+```
+
+#### Skater Skating Speed - Detail
+
+- **Endpoint**: `/v1/edge/skater-skating-speed-detail/{player-id}/{season}/{game-type}`; `/v1/edge/skater-skating-speed-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Retrieve top 10 skating speeds for the provided player. Also provides max skating speed, bursts over 22mph, bursts from 20 to 22mph and bursts from 18 to 20mph.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-skating-speed-detail/8482116/20242025/2"
+```
+
+#### Skater Zone Time - Top 10
+
+- **Endpoint**: `/v1/edge/skater-zone-time-top-10/{positions}/{strength}/{sort-by}/{season}/{game-type}`; `/v1/edge/skater-zone-time-top-10/{positions}/{strength}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve 10 fastest skaters based on the provided filters. 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `strength` (str) - 
+    - 'all' - All situations
+    - 'pp' - Power-play
+    - 'pk' - Penalty kill
+    - 'es' - Even-strength
+  - `sort-by` (str) - 
+    - 'offensive' - Offensive Zone
+    - 'neutral' - Neutral Zone
+    - 'defensive' - Defensive Zone
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-zone-time-top-10/F/all/offensive/20242025/2"
+```
+
+#### Skater Zone Time - Detail
+
+- **Endpoint**: `/v1/edge/skater-zone-time/{player-id}/{season}/{game-type}`; `/v1/edge/skater-zone-time/{player-id}/now`
+- **Method**: GET
+- **Description**: Zone time details by situation (All Situations/Even Strength/Power Play/Penalty Kill). Includes zone starts.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-zone-time/8482116/20242025/2"
+```
+
+#### Skater Shot Speed - Top 10
+
+- **Endpoint**: `/v1/edge/skater-shot-speed-top-10/{positions}/{sort-by}/{season}/{game-type}`; `/v1/edge/skater-shot-speed-top-10/{positions}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Retrieve 10 players with the fastest shot based on the provided filters. 
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `sort-by` (str) - String - **TODO** 
+    - 'max' - Max skating speed
+    - 'unknown' - 100+ mph
+    - 'unknown' - 90+ mph
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-shot-speed-top-10/F/max/20242025/2"
+```
+
+#### Skater Shot Speed - Detail
+
+- **Endpoint**: `/v1/edge/skater-shot-speed-detail/{player-id}/{season}/{game-type}`; `/v1/edge/skater-shot-speed-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Provides the 10 hardest shots for a specified player. Includes top shot speed, average shot speed, shot attempts in the following groups: 100+, 90-100, 80-90, 70-80.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-shot-speed-detail/8482116/20242025/2"
+```
+
+#### Skater Shot Location - Top 10
+
+- **Endpoint**: `/v1/edge/skater-shot-location-top-10/{position}/{category}/{sort-by}/{season}/{game-type}`; `/v1/edge/skater-shot-location-top-10/{position}/{category}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Presumably top 10 skaters based on the specified filters. -**TODO**
+- **Parameters**:
+  - `position` (str) - 
+    - 'all' - Forwards and Defense
+    - 'F' - Forwards
+    - 'D' - Defense
+  - `category` (str)  - **TODO** 
+    - 'unknown' - All Locations
+    - 'unknown' - High-Danger
+    - 'unknown' - Mid-Range
+    - 'unknown' - Long-Range
+  - `sort-by` (str) - String - **TODO** 
+    - 'unknown' - Shots on Goal
+    - 'unknown' - Goals
+    - 'unknown' - Shooting Percentage
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-shot-location-top-10/F/{category}/{sort-by}/20242025/2"
+```
+
+#### Skater Shot Location - Detail
+
+- **Endpoint**: `/v1/edge/skater-shot-location-detail/{player-id}/{season}/{game-type}`; `/v1/edge/skater-shot-location-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Provides information on shot location
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/skater-shot-location-detail/8482116/20242025/2"
+```
+
+#### CAT - Skater Detail
+
+- **Endpoint**: `/v1/cat/edge/skater-detail/{player-id}/{season}/{game-type}`; `/v1/cat/edge/skater-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Provides information on top shot speed, skating speed/distance, shots on goal summary/details and zone time details.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/cat/edge/skater-detail/8482116/20242025/2"
+```
+
+### Goalie Data
+
+#### Goalie Detail
+
+- **Endpoint**: `/v1/edge/goalie-detail/{player-id}/{season}/{game-type}`; `/v1/edge/goalie-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Retrieve goalie rankings for NHL Edge data, Includes GAA, games above .900, goal differential per 60, average goal support, point percentage, shot location summary/details.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-detail/8476999/20242025/2"
+```
+
+#### Goalie Landing
+
+- **Endpoint**: `/v1/edge/goalie-landing/{season}/{game-type}`; `/v1/edge/goalie-landing/now`
+- **Method**: GET
+- **Description**: Retrieve leading goalie for NHL Edge data, Includes high-danger save percentage/saves/goals against, save percentage at 5v5, games above .900.
+- **Parameters**:
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-landing/20242025/2"
+```
+
+#### Goalie Comparison
+
+- **Endpoint**: `/v1/edge/goalie-comparison/{player-id}/{season}/{game-type}`; `/v1/edge/goalie-comparison/{player-id}/now`
+- **Method**: GET
+- **Description**: Retrieve NHL Edge data for the specified player, Includes shot location summary/details,  5v5 save percentage in the last 10 games/details, overall save percentage in the last 10 games, and overall save percentage details. 
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-comparison/8476999/20242025/2"
+```
+
+#### Goalie 5v5 - Top 10
+
+- **Endpoint**: `/v1/edge/goalie-5v5-top-10/{sort-by}/{season}/{game-type}`; `/v1/edge/goalie-5v5-top-10/{sort-by}/now`
+- **Method**: GET
+- **Description**: Top 10 goalies based on the specified filters.
+- **Parameters**:
+  - `sort-by` (str) - String - **TODO** 
+    - 'shots' - Shots on Goal
+    - *Likely more parameters available*
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-5v5-top-10/shots/20242025/2"
+```
+
+#### Goalie 5v5 - Detail
+
+- **Endpoint**: `/v1/edge/goalie-5v5-detail/{player-id}/{season}/{game-type}`; `/v1/edge/goalie-5v5-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: 5v5 save percentage details for the specified player.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-5v5-detail/8476999/20242025/2"
+```
+
+#### Goalie Shot Location - Top 10
+
+- **Endpoint**: `/v1/edge/goalie-shot-location-top-10/{category}/{sort-by}/{season}/{game-type}`; `/v1/edge/goalie-shot-location-top-10/{category}/{sort-by}/now`
+- **Method**: GET
+- **Description**: Presumably top 10 goalies based on the specified filters. -**TODO**
+- **Parameters**:
+  - `category` (str)  - **TODO** 
+    - 'unknown' - All Locations
+    - 'unknown' - High-Danger
+    - 'unknown' - Mid-Range
+    - 'unknown' - Long-Range
+  - `sort-by` (str) - String - **TODO** 
+    - 'unknown' - Shots Against
+    - 'unknown' - Saves
+    - 'unknown' - Goals Against
+    - 'unknown' - Save %
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-shot-location-top-10/{category}/{sort-by}/20242025/2"
+```
+
+#### Goalie Shot Location - Detail
+
+- **Endpoint**: `/v1/edge/goalie-shot-location-detail/{player-id}/{season}/{game-type}`; `/v1/edge/goalie-shot-location-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Goalie shot location details for the specified player.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-shot-location-detail/8476999/20242025/2"
+```
+
+#### Goalie Save Percentage - Top 10
+
+- **Endpoint**: `/v1/edge/goalie-edge-save-pctg-top-10/{sort-by}/{season}/{game-type}`; `/v1/edge/goalie-edge-save-pctg-top-10/{sort-by}/now`
+- **Method**: GET
+- **Description**: Unknown. -**TODO**
+- **Parameters**:
+  - `sort-by` (str) - String - **TODO** 
+    - *Unknown parameters*
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-edge-save-pctg-top-10/{sort-by}/20242025/2"
+```
+
+#### Goalie Save Percentage - Detail
+
+- **Endpoint**: `/v1/edge/goalie-save-percentage-detail/{player-id}/{season}/{game-type}`; `/v1/edge/goalie-save-percentage-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Goalie save percentage details for the specified player. Contains save percentage in last 10 games, games above .900 and percentage of games above .900.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/edge/goalie-save-percentage-detail/8476999/20242025/2"
+```
+
+#### CAT - Goalie Detail
+
+- **Endpoint**: `/v1/cat/edge/goalie-detail/{player-id}/{season}/{game-type}`; `/v1/cat/edge/goalie-detail/{player-id}/now`
+- **Method**: GET
+- **Description**: Provides information on GAA, games above .900, goal differential per 60, goal support average, point percentage, shot location summary/details.
+- **Parameters**:
+  - `player-id` (int) - Player ID
+  - `season` (int) - Season in YYYYYYYY format
+  - `game-type` (int) - 2 for regular season, 3 for postseason
+- **Response**: JSON format
+
+###### Example using cURL:
+
+```bash
+curl -X GET "https://api-web.nhle.com/v1/cat/edge/skater-detail/8482116/20242025/2"
+```
+
+### Miscellaneous Data
+
+https://api-web.nhle.com/v1/edge/by-the-numbers - Unknown
 
 
 
